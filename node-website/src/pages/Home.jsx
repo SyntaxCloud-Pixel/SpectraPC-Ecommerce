@@ -12,15 +12,29 @@ const products = [
 function Home() {
   return (
     <div>
-      <div style={{
+      <style>{`
+        .hero { padding: 80px 40px; }
+        .hero h1 { font-size: 48px; }
+        .products-grid { grid-template-columns: repeat(3, 1fr); }
+        @media (max-width: 1024px) {
+          .products-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+          .hero { padding: 48px 20px; }
+          .hero h1 { font-size: 32px; }
+          .hero p { font-size: 15px; }
+          .products-section { padding: 40px 20px !important; }
+          .products-grid { grid-template-columns: repeat(1, 1fr); }
+        }
+      `}</style>
+      <div className="hero" style={{
         backgroundColor: '#f9f9f9',
-        padding: '80px 40px',
         textAlign: 'center',
       }}>
-        <h1 style={{ fontSize: '48px', fontWeight: '700', color: '#000', marginBottom: '16px' }}>
+        <h1 className="hero h1" style={{ fontWeight: '700', color: '#000', marginBottom: '16px' }}>
           Find Your Perfect Laptop
         </h1>
-        <p style={{ fontSize: '18px', color: '#666', marginBottom: '32px' }}>
+        <p className="hero p" style={{ fontSize: '18px', color: '#666', marginBottom: '32px' }}>
           Browse our collection of premium laptops from top brands.
         </p>
         <Link to="/cart" style={{
@@ -33,14 +47,9 @@ function Home() {
           fontWeight: '500'
         }}>Shop Now</Link>
       </div>
-
-      <div style={{ padding: '60px 40px' }}>
+      <div className="products-section" style={{ padding: '60px 40px' }}>
         <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '32px' }}>Featured Laptops</h2>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '24px',
-        }}>
+        <div className="products-grid" style={{ display: 'grid', gap: '24px' }}>
           {products.map(product => (
             <div key={product.id} style={{
               border: '1px solid #eee',

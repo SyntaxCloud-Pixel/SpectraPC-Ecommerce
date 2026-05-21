@@ -24,7 +24,16 @@ const orders = [
 
 function Orders() {
   return (
-    <div style={{ padding: '40px', maxWidth: '800px', margin: '0 auto' }}>
+    <div style={{ padding: '40px 24px', maxWidth: '800px', margin: '0 auto' }}>
+      <style>{`
+        .order-header { flex-direction: row; }
+        .order-status-row { flex-direction: row; }
+        @media (max-width: 768px) {
+          .order-header { flex-direction: column !important; gap: 8px; }
+          .order-status-row { flex-direction: column !important; align-items: flex-start !important; gap: 8px; }
+        }
+      `}</style>
+
       <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '8px' }}>My Orders</h2>
       <p style={{ color: '#666', marginBottom: '32px' }}>{orders.length} orders placed</p>
 
@@ -36,7 +45,7 @@ function Orders() {
             overflow: 'hidden',
             backgroundColor: '#fff'
           }}>
-            <div style={{
+            <div className="order-header" style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
@@ -48,7 +57,7 @@ function Orders() {
                 <span style={{ fontWeight: '700', fontSize: '16px' }}>{order.id}</span>
                 <span style={{ color: '#999', fontSize: '14px', marginLeft: '12px' }}>{order.date}</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <div className="order-status-row" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                 <span style={{
                   padding: '4px 12px',
                   borderRadius: '20px',
@@ -81,7 +90,8 @@ function Orders() {
                         width: '48px',
                         height: '48px',
                         objectFit: 'cover',
-                        borderRadius: '6px'
+                        borderRadius: '6px',
+                        flexShrink: 0
                       }}
                     />
                     <div>
@@ -98,7 +108,7 @@ function Orders() {
       </div>
 
       <div style={{ marginTop: '40px' }}>
-        <Link to="/" style={{
+        <Link to="/home" style={{
           color: '#000',
           fontWeight: '500',
           textDecoration: 'none',

@@ -8,11 +8,17 @@ const wishlistItems = [
 
 function Wishlist() {
   return (
-    <div style={{ padding: '40px', maxWidth: '900px', margin: '0 auto' }}>
+    <div style={{ padding: '40px 24px', maxWidth: '900px', margin: '0 auto' }}>
+      <style>{`
+        .wishlist-grid { grid-template-columns: repeat(3, 1fr); }
+        @media (max-width: 1024px) { .wishlist-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .wishlist-grid { grid-template-columns: repeat(1, 1fr); } }
+      `}</style>
+
       <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '8px' }}>My Wishlist</h2>
       <p style={{ color: '#666', marginBottom: '32px' }}>{wishlistItems.length} laptops saved</p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+      <div className="wishlist-grid" style={{ display: 'grid', gap: '24px' }}>
         {wishlistItems.map(item => (
           <div key={item.id} style={{
             border: '1px solid #eee',
@@ -20,18 +26,17 @@ function Wishlist() {
             padding: '20px',
             backgroundColor: '#fff',
           }}>
-           <img
-  src={item.image}
-  alt={item.name}
-  style={{
-    width: '100%',
-    height: '180px',
-    objectFit: 'cover',
-    borderRadius: '8px',
-    marginBottom: '16px'
-  }}
-/>
-
+            <img
+              src={item.image}
+              alt={item.name}
+              style={{
+                width: '100%',
+                height: '180px',
+                objectFit: 'cover',
+                borderRadius: '8px',
+                marginBottom: '16px'
+              }}
+            />
             <p style={{ fontSize: '13px', color: '#999', marginBottom: '4px' }}>{item.category}</p>
             <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>{item.name}</h3>
             <p style={{ fontSize: '18px', fontWeight: '700', marginBottom: '16px' }}>${item.price}</p>
@@ -62,7 +67,7 @@ function Wishlist() {
       </div>
 
       <div style={{ marginTop: '40px' }}>
-        <Link to="/" style={{
+        <Link to="/home" style={{
           color: '#000',
           fontWeight: '500',
           textDecoration: 'none',

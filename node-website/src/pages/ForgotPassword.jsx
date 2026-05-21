@@ -7,7 +7,8 @@ function ForgotPassword() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#f9f9f9'
+      backgroundColor: '#f9f9f9',
+      padding: '20px'
     }}>
       <div style={{
         backgroundColor: '#fff',
@@ -15,7 +16,8 @@ function ForgotPassword() {
         borderRadius: '12px',
         border: '1px solid #eee',
         width: '100%',
-        maxWidth: '400px'
+        maxWidth: '400px',
+        boxSizing: 'border-box'
       }}>
         <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '8px' }}>Forgot password?</h2>
         <p style={{ color: '#666', marginBottom: '32px' }}>

@@ -23,7 +23,8 @@ function Login({ setIsLoggedIn, emails, passwords }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#f9f9f9'
+      backgroundColor: '#f9f9f9',
+      padding: '20px'
     }}>
       <div style={{
         backgroundColor: '#fff',
@@ -31,7 +32,8 @@ function Login({ setIsLoggedIn, emails, passwords }) {
         borderRadius: '12px',
         border: '1px solid #eee',
         width: '100%',
-        maxWidth: '400px'
+        maxWidth: '400px',
+        boxSizing: 'border-box'
       }}>
         <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '8px' }}>Welcome back</h2>
         <p style={{ color: '#666', marginBottom: '32px' }}>Login to your account</p>
@@ -52,7 +54,7 @@ function Login({ setIsLoggedIn, emails, passwords }) {
           <label style={labelStyle}>Email</label>
           <input
             type="email"
-            placeholder="test@gmail.com"
+            placeholder="user@laptopzone.com"
             style={inputStyle}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -80,6 +82,7 @@ function Login({ setIsLoggedIn, emails, passwords }) {
           Don't have an account?{' '}
           <Link to="/signup" style={{ color: '#000', fontWeight: '500' }}>Sign up</Link>
         </p>
+
         <div style={{
           marginTop: '24px',
           padding: '12px',
@@ -88,7 +91,7 @@ function Login({ setIsLoggedIn, emails, passwords }) {
           fontSize: '13px',
           color: '#888'
         }}>
-          Demo: test@gmail.com / 123456
+          Demo: user@laptopzone.com / laptop123
         </div>
       </div>
     </div>

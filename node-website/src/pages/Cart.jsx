@@ -10,13 +10,22 @@ function Cart() {
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
   return (
-    <div style={{ padding: '40px', maxWidth: '900px', margin: '0 auto' }}>
+    <div style={{ padding: '40px 24px', maxWidth: '900px', margin: '0 auto' }}>
+      <style>{`
+        .cart-summary { max-width: 400px; margin-left: auto; }
+        @media (max-width: 768px) {
+          .cart-item { flex-direction: column; align-items: flex-start !important; }
+          .cart-item-img { width: 100% !important; height: 200px !important; }
+          .cart-summary { max-width: 100%; margin-left: 0; }
+        }
+      `}</style>
+
       <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '8px' }}>My Cart</h2>
       <p style={{ color: '#666', marginBottom: '32px' }}>{cartItems.length} laptops</p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
         {cartItems.map(item => (
-          <div key={item.id} style={{
+          <div key={item.id} className="cart-item" style={{
             display: 'flex',
             alignItems: 'center',
             gap: '20px',
@@ -28,6 +37,7 @@ function Cart() {
             <img
               src={item.image}
               alt={item.name}
+              className="cart-item-img"
               style={{
                 width: '80px',
                 height: '80px',
@@ -62,13 +72,11 @@ function Cart() {
         ))}
       </div>
 
-      <div style={{
+      <div className="cart-summary" style={{
         padding: '24px',
         border: '1px solid #eee',
         borderRadius: '10px',
         backgroundColor: '#f9f9f9',
-        maxWidth: '400px',
-        marginLeft: 'auto'
       }}>
         <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '16px' }}>Order Summary</h3>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
@@ -107,7 +115,7 @@ function Cart() {
       </div>
 
       <div style={{ marginTop: '24px' }}>
-        <Link to="/" style={{
+        <Link to="/home" style={{
           color: '#000',
           fontWeight: '500',
           textDecoration: 'none',

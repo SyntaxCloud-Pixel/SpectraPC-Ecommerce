@@ -2,13 +2,18 @@ import { Link } from 'react-router-dom'
 
 function Address() {
   return (
-    <div style={{ padding: '40px', maxWidth: '600px', margin: '0 auto' }}>
+    <div style={{ padding: '40px 24px', maxWidth: '600px', margin: '0 auto' }}>
+      <style>{`
+        .address-row { display: flex; gap: 16px; }
+        @media (max-width: 768px) { .address-row { flex-direction: column; } }
+      `}</style>
+
       <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '8px' }}>Delivery Address</h2>
       <p style={{ color: '#666', marginBottom: '32px' }}>Enter your shipping details</p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
-        <div style={{ display: 'flex', gap: '16px' }}>
+        <div className="address-row">
           <div style={{ flex: 1 }}>
             <label style={labelStyle}>First Name</label>
             <input type="text" placeholder="John" style={inputStyle} />
@@ -34,7 +39,7 @@ function Address() {
           <input type="text" placeholder="123 Main Street" style={inputStyle} />
         </div>
 
-        <div style={{ display: 'flex', gap: '16px' }}>
+        <div className="address-row">
           <div style={{ flex: 1 }}>
             <label style={labelStyle}>City</label>
             <input type="text" placeholder="New York" style={inputStyle} />
@@ -45,7 +50,7 @@ function Address() {
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '16px' }}>
+        <div className="address-row">
           <div style={{ flex: 1 }}>
             <label style={labelStyle}>Zip Code</label>
             <input type="text" placeholder="10001" style={inputStyle} />
@@ -77,7 +82,7 @@ function Address() {
           textDecoration: 'none',
           borderBottom: '1px solid #000',
           alignSelf: 'flex-start'
-        }}>← Back to Cart</Link>
+        }}>Back to Cart</Link>
 
       </div>
     </div>
