@@ -23,7 +23,7 @@ function Navbar({ setIsLoggedIn }) {
       zIndex: 100
     }}>
       <Link to="/home" style={{ textDecoration: 'none' }}>
-        <h1 style={{ fontSize: '24px', fontWeight: '700', color: '#000' }}>LaptopZone</h1>
+        <h1 style={{ fontSize: '24px', fontWeight: '700', color: '#000' }}>SpectraPC</h1>
       </Link>
       <button
         onClick={() => setMenuOpen(!menuOpen)}

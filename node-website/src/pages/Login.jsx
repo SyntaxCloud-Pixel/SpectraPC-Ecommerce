@@ -91,7 +91,7 @@ function Login({ setIsLoggedIn, emails, passwords }) {
           fontSize: '13px',
           color: '#888'
         }}>
-          Demo: user@laptopzone.com / laptop123
+          Demo: test@gmail.com / 123456
         </div>
       </div>
     </div>
