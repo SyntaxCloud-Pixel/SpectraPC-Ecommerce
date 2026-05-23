@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { useCart } from '../context/CartContext'
 
 const products = [
   { id: 1, name: 'MacBook Air M3', price: 1099.99, category: 'Apple', image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500' },
@@ -10,6 +12,17 @@ const products = [
 ]
 
 function Home() {
+  const { addToCart, cartItems } = useCart()
+  const [added, setAdded] = useState({})
+
+  const handleAddToCart = (product) => {
+    addToCart(product)
+    setAdded(prev => ({ ...prev, [product.id]: true }))
+    setTimeout(() => setAdded(prev => ({ ...prev, [product.id]: false })), 1500)
+  }
+
+  const isInCart = (id) => cartItems.some(item => item.id === id)
+
   return (
     <div>
       <style>{`
@@ -26,15 +39,25 @@ function Home() {
           .products-section { padding: 40px 20px !important; }
           .products-grid { grid-template-columns: repeat(1, 1fr); }
         }
+        .add-btn {
+          flex: 1;
+          padding: 10px;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          fontWeight: 500;
+          font-size: 14px;
+          font-weight: 500;
+          transition: background-color 0.2s, transform 0.1s;
+        }
+        .add-btn:active { transform: scale(0.97); }
       `}</style>
-      <div className="hero" style={{
-        backgroundColor: '#f9f9f9',
-        textAlign: 'center',
-      }}>
-        <h1 className="hero h1" style={{ fontWeight: '700', color: '#000', marginBottom: '16px' }}>
+
+      <div className="hero" style={{ backgroundColor: '#f9f9f9', textAlign: 'center' }}>
+        <h1 style={{ fontWeight: '700', color: '#000', marginBottom: '16px' }}>
           Find Your Perfect Laptop
         </h1>
-        <p className="hero p" style={{ fontSize: '18px', color: '#666', marginBottom: '32px' }}>
+        <p style={{ fontSize: '18px', color: '#666', marginBottom: '32px' }}>
           Browse our collection of premium laptops from top brands.
         </p>
         <Link to="/cart" style={{
@@ -45,8 +68,9 @@ function Home() {
           textDecoration: 'none',
           fontSize: '16px',
           fontWeight: '500'
-        }}>Shop Now</Link>
+        }}>View Cart</Link>
       </div>
+
       <div className="products-section" style={{ padding: '60px 40px' }}>
         <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '32px' }}>Featured Laptops</h2>
         <div className="products-grid" style={{ display: 'grid', gap: '24px' }}>
@@ -73,16 +97,16 @@ function Home() {
               <p style={{ fontSize: '18px', fontWeight: '700', marginBottom: '16px' }}>${product.price}</p>
 
               <div style={{ display: 'flex', gap: '8px' }}>
-                <button style={{
-                  flex: 1,
-                  padding: '10px',
-                  backgroundColor: '#000',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontWeight: '500'
-                }}>Add to Cart</button>
+                <button
+                  className="add-btn"
+                  onClick={() => handleAddToCart(product)}
+                  style={{
+                    backgroundColor: added[product.id] ? '#16a34a' : isInCart(product.id) ? '#333' : '#000',
+                    color: '#fff',
+                  }}
+                >
+                  {added[product.id] ? '✓ Added!' : isInCart(product.id) ? 'Add Again' : 'Add to Cart'}
+                </button>
                 <button style={{
                   padding: '10px 14px',
                   backgroundColor: '#fff',

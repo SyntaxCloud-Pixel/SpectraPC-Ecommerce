@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
+import { CartProvider } from './context/CartContext'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -17,19 +18,21 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   return (
-    <Router>
-      {isLoggedIn && <Navbar setIsLoggedIn={setIsLoggedIn} />}
-      <Routes>
-        <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
-        <Route path="/home" element={isLoggedIn ? <Home /> : <Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/wishlist" element={isLoggedIn ? <Wishlist /> : <Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
-        <Route path="/cart" element={isLoggedIn ? <Cart /> : <Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
-        <Route path="/address" element={isLoggedIn ? <Address /> : <Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
-        <Route path="/orders" element={isLoggedIn ? <Orders /> : <Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
-      </Routes>
-    </Router>
+    <CartProvider>
+      <Router>
+        {isLoggedIn && <Navbar setIsLoggedIn={setIsLoggedIn} />}
+        <Routes>
+          <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
+          <Route path="/home" element={isLoggedIn ? <Home /> : <Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/wishlist" element={isLoggedIn ? <Wishlist /> : <Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
+          <Route path="/cart" element={isLoggedIn ? <Cart /> : <Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
+          <Route path="/address" element={isLoggedIn ? <Address /> : <Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
+          <Route path="/orders" element={isLoggedIn ? <Orders /> : <Login setIsLoggedIn={setIsLoggedIn} emails={emails} passwords={passwords} />} />
+        </Routes>
+      </Router>
+    </CartProvider>
   )
 }
 

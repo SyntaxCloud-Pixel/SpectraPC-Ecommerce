@@ -1,14 +1,35 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useCart } from '../context/CartContext'
 
 function Navbar({ setIsLoggedIn }) {
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
+  const { cartCount } = useCart()
 
   const handleLogout = () => {
     setIsLoggedIn(false)
     navigate('/')
   }
+
+  const CartLink = ({ onClick }) => (
+    <Link to="/cart" style={{ ...linkStyle, position: 'relative', display: 'inline-flex', alignItems: 'center', gap: '4px' }} onClick={onClick}>
+      Cart
+      {cartCount > 0 && (
+        <span style={{
+          backgroundColor: '#000',
+          color: '#fff',
+          fontSize: '11px',
+          fontWeight: '700',
+          borderRadius: '999px',
+          padding: '1px 6px',
+          minWidth: '18px',
+          textAlign: 'center',
+          lineHeight: '16px',
+        }}>{cartCount}</span>
+      )}
+    </Link>
+  )
 
   return (
     <nav style={{
@@ -23,26 +44,27 @@ function Navbar({ setIsLoggedIn }) {
       zIndex: 100
     }}>
       <Link to="/home" style={{ textDecoration: 'none' }}>
-        <h1 style={{ fontSize: '24px', fontWeight: '700', color: '#000' }}>SpectraPC</h1>
+        <h1 style={{ fontSize: '24px', fontWeight: '700', color: '#000', margin: 0 }}>SpectraPC</h1>
       </Link>
+
       <button
         onClick={() => setMenuOpen(!menuOpen)}
+        className="hamburger"
         style={{
           display: 'none',
           fontSize: '24px',
           background: 'none',
           border: 'none',
-          cursor: 'pointer',
-          id: 'hamburger'
+          cursor: 'pointer'
         }}
-        className="hamburger"
       >
-        {menuOpen ? 'X' : '☰'}
+        {menuOpen ? '✕' : '☰'}
       </button>
+
       <div className="nav-links" style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
         <Link to="/home" style={linkStyle}>Home</Link>
         <Link to="/wishlist" style={linkStyle}>Wishlist</Link>
-        <Link to="/cart" style={linkStyle}>Cart</Link>
+        <CartLink />
         <Link to="/orders" style={linkStyle}>Orders</Link>
         <button onClick={handleLogout} style={{
           ...linkStyle,
@@ -54,6 +76,7 @@ function Navbar({ setIsLoggedIn }) {
           cursor: 'pointer'
         }}>Logout</button>
       </div>
+
       {menuOpen && (
         <div style={{
           position: 'absolute',
@@ -70,7 +93,7 @@ function Navbar({ setIsLoggedIn }) {
         }}>
           <Link to="/home" style={linkStyle} onClick={() => setMenuOpen(false)}>Home</Link>
           <Link to="/wishlist" style={linkStyle} onClick={() => setMenuOpen(false)}>Wishlist</Link>
-          <Link to="/cart" style={linkStyle} onClick={() => setMenuOpen(false)}>Cart</Link>
+          <CartLink onClick={() => setMenuOpen(false)} />
           <Link to="/orders" style={linkStyle} onClick={() => setMenuOpen(false)}>Orders</Link>
           <button onClick={handleLogout} style={{
             ...linkStyle,
