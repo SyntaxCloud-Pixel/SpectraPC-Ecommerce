@@ -13,7 +13,7 @@ function Navbar({ setIsLoggedIn }) {
   }
 
   const CartLink = ({ onClick }) => (
-    <Link to="/cart" style={{ ...linkStyle, position: 'relative', display: 'inline-flex', alignItems: 'center', gap: '4px' }} onClick={onClick}>
+    <Link to="/cart" onClick={onClick} style={{ ...linkStyle, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
       Cart
       {cartCount > 0 && (
         <span style={{
@@ -23,8 +23,6 @@ function Navbar({ setIsLoggedIn }) {
           fontWeight: '700',
           borderRadius: '999px',
           padding: '1px 6px',
-          minWidth: '18px',
-          textAlign: 'center',
           lineHeight: '16px',
         }}>{cartCount}</span>
       )}
@@ -50,13 +48,7 @@ function Navbar({ setIsLoggedIn }) {
       <button
         onClick={() => setMenuOpen(!menuOpen)}
         className="hamburger"
-        style={{
-          display: 'none',
-          fontSize: '24px',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer'
-        }}
+        style={{ display: 'none', fontSize: '24px', background: 'none', border: 'none', cursor: 'pointer' }}
       >
         {menuOpen ? '✕' : '☰'}
       </button>

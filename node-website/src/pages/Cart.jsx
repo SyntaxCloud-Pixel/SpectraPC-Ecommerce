@@ -24,22 +24,15 @@ function Cart() {
 
       {cartItems.length === 0 ? (
         <div style={{
-          textAlign: 'center',
-          padding: '80px 20px',
-          border: '1px solid #eee',
-          borderRadius: '10px',
-          backgroundColor: '#fafafa'
+          textAlign: 'center', padding: '80px 20px',
+          border: '1px solid #eee', borderRadius: '10px', backgroundColor: '#fafafa'
         }}>
+          <p style={{ fontSize: '48px', marginBottom: '16px' }}>🛒</p>
           <p style={{ fontSize: '18px', fontWeight: '600', marginBottom: '8px', color: '#333' }}>Nothing here yet</p>
           <p style={{ color: '#999', marginBottom: '24px' }}>Go add some laptops from the home page!</p>
           <Link to="/home" style={{
-            backgroundColor: '#000',
-            color: '#fff',
-            padding: '12px 28px',
-            borderRadius: '6px',
-            textDecoration: 'none',
-            fontSize: '15px',
-            fontWeight: '500'
+            backgroundColor: '#000', color: '#fff', padding: '12px 28px',
+            borderRadius: '6px', textDecoration: 'none', fontSize: '15px', fontWeight: '500'
           }}>Browse Laptops</Link>
         </div>
       ) : (
@@ -47,61 +40,33 @@ function Cart() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
             {cartItems.map(item => (
               <div key={item.id} className="cart-item" style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '20px',
-                padding: '20px',
-                border: '1px solid #eee',
-                borderRadius: '10px',
-                backgroundColor: '#fff'
+                display: 'flex', alignItems: 'center', gap: '20px',
+                padding: '20px', border: '1px solid #eee', borderRadius: '10px', backgroundColor: '#fff'
               }}>
                 <img
                   src={item.image}
                   alt={item.name}
                   className="cart-item-img"
-                  style={{
-                    width: '80px',
-                    height: '80px',
-                    objectFit: 'cover',
-                    borderRadius: '8px',
-                    flexShrink: 0
-                  }}
+                  style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px', flexShrink: 0 }}
                 />
-
                 <div style={{ flex: 1 }}>
                   <p style={{ fontSize: '13px', color: '#999', marginBottom: '4px' }}>{item.category}</p>
                   <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '4px' }}>{item.name}</h3>
                   <p style={{ fontSize: '16px', fontWeight: '700' }}>${item.price.toFixed(2)}</p>
                 </div>
-
                 <div className="cart-item-actions" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <button
-                    onClick={() => updateQuantity(item.id, -1)}
-                    style={qtyBtnStyle}
-                    title="Decrease quantity"
-                  >−</button>
+                  <button onClick={() => updateQuantity(item.id, -1)} style={qtyBtnStyle}>−</button>
                   <span style={{ fontSize: '16px', fontWeight: '600', minWidth: '20px', textAlign: 'center' }}>
                     {item.quantity}
                   </span>
-                  <button
-                    onClick={() => updateQuantity(item.id, 1)}
-                    style={qtyBtnStyle}
-                    title="Increase quantity"
-                  >+</button>
+                  <button onClick={() => updateQuantity(item.id, 1)} style={qtyBtnStyle}>+</button>
                 </div>
-
                 <button
                   onClick={() => removeFromCart(item.id)}
                   style={{
-                    padding: '8px 16px',
-                    backgroundColor: '#fff',
-                    border: '1px solid #eee',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#cc0000',
-                    transition: 'background-color 0.2s'
+                    padding: '8px 16px', backgroundColor: '#fff', border: '1px solid #eee',
+                    borderRadius: '6px', cursor: 'pointer', fontSize: '14px',
+                    fontWeight: '500', color: '#cc0000'
                   }}
                   onMouseEnter={e => e.target.style.backgroundColor = '#fff0f0'}
                   onMouseLeave={e => e.target.style.backgroundColor = '#fff'}
@@ -111,15 +76,13 @@ function Cart() {
           </div>
 
           <div className="cart-summary" style={{
-            padding: '24px',
-            border: '1px solid #eee',
-            borderRadius: '10px',
-            backgroundColor: '#f9f9f9',
+            padding: '24px', border: '1px solid #eee',
+            borderRadius: '10px', backgroundColor: '#f9f9f9',
           }}>
             <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '16px' }}>Order Summary</h3>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
               <span style={{ color: '#666' }}>
-                Subtotal ({cartItems.reduce((s, i) => s + i.quantity, 0)} item{cartItems.reduce((s, i) => s + i.quantity, 0) > 1 ? 's' : ''})
+                Subtotal ({cartItems.reduce((s, i) => s + i.quantity, 0)} items)
               </span>
               <span style={{ fontWeight: '500' }}>${total.toFixed(2)}</span>
             </div>
@@ -128,28 +91,17 @@ function Cart() {
               <span style={{ fontWeight: '500', color: '#16a34a' }}>Free</span>
             </div>
             <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              marginTop: '16px',
-              paddingTop: '16px',
-              borderTop: '1px solid #eee'
+              display: 'flex', justifyContent: 'space-between',
+              marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #eee'
             }}>
               <span style={{ fontSize: '18px', fontWeight: '700' }}>Total</span>
               <span style={{ fontSize: '18px', fontWeight: '700' }}>${total.toFixed(2)}</span>
             </div>
-
             <Link to="/address">
               <button style={{
-                width: '100%',
-                padding: '12px',
-                backgroundColor: '#000',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '6px',
-                fontSize: '16px',
-                fontWeight: '500',
-                cursor: 'pointer',
-                marginTop: '20px'
+                width: '100%', padding: '12px', backgroundColor: '#000', color: '#fff',
+                border: 'none', borderRadius: '6px', fontSize: '16px',
+                fontWeight: '500', cursor: 'pointer', marginTop: '20px'
               }}>Proceed to Checkout</button>
             </Link>
           </div>
@@ -157,29 +109,18 @@ function Cart() {
       )}
 
       <div style={{ marginTop: '24px' }}>
-        <Link to="/home" style={{
-          color: '#000',
-          fontWeight: '500',
-          textDecoration: 'none',
-          borderBottom: '1px solid #000'
-        }}>Back to Shop</Link>
+        <Link to="/home" style={{ color: '#000', fontWeight: '500', textDecoration: 'none', borderBottom: '1px solid #000' }}>
+          Back to Shop
+        </Link>
       </div>
     </div>
   )
 }
 
 const qtyBtnStyle = {
-  width: '32px',
-  height: '32px',
-  backgroundColor: '#fff',
-  border: '1px solid #ddd',
-  borderRadius: '6px',
-  cursor: 'pointer',
-  fontSize: '18px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  lineHeight: 1
+  width: '32px', height: '32px', backgroundColor: '#fff',
+  border: '1px solid #ddd', borderRadius: '6px', cursor: 'pointer',
+  fontSize: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1
 }
 
 export default Cart
